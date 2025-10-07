@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const menuBtnRef = document.querySelector("[data-menu-button]");
-  const navListRef = document.querySelector(".i-i-navigation-list");
-  const headerRef = document.querySelector(".i-i-header");
-  const navigationRef = document.querySelector(".i-i-navigation");
+  const navListRef = document.querySelector(".i-k-navigation-list");
+  const headerRef = document.querySelector(".i-k-header");
+  const navigationRef = document.querySelector(".i-k-navigation");
 
   menuBtnRef.addEventListener("click", () => {
     menuBtnRef.classList.toggle("is-open");
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navigationRef.classList.toggle("is-open");
   });
 
-  document.querySelectorAll(".i-i-navigation-link").forEach((n) =>
+  document.querySelectorAll(".i-k-navigation-link").forEach((n) =>
     n.addEventListener("click", () => {
       navListRef.classList.remove("is-open");
       menuBtnRef.classList.remove("is-open");
@@ -39,36 +39,4 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("cookiesAccepted", "false");
     popup.style.display = "none";
   };
-});
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contact-form");
-  const popup = document.getElementById("success-popup");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-
-    fetch("form.php", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error("Network error");
-        return response.text();
-      })
-      .then(() => {
-        form.reset();
-        popup.classList.remove("hidden");
-        popup.classList.add("show");
-
-        setTimeout(() => {
-          popup.classList.remove("show");
-          popup.classList.add("hidden");
-        }, 3000);
-      })
-      .catch((error) => {
-        console.error("Form error:", error);
-      });
-  });
 });
